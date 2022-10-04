@@ -1,6 +1,13 @@
 package Offer;
 
 public class Offer12 {
+    /**
+     * 在矩阵中找是否能够成单词word
+     * @param board
+     * @param word
+     * @return
+     */
+
     public static boolean exist(char[][] board, String word) {
         int m = board.length, n = board[0].length, wordLength = word.length();
         if (m * n < wordLength){
