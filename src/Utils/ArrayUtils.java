@@ -2,8 +2,8 @@ package Utils;
 
 public class ArrayUtils {
 
-    public void showArray(Object[] arr){
-        for (Object a : arr) {
+    public void showArray(int[] arr){
+        for (int a : arr) {
             System.out.print(a + " ");
         }
     }
