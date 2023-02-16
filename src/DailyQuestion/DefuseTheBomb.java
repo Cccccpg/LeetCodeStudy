@@ -1,4 +1,4 @@
-package RandomQuestion;
+package DailyQuestion;
 
 public class DefuseTheBomb {
 
