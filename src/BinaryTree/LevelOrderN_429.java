@@ -5,17 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class Node {
+class NNode {
     public int val;
-    public List<Node> children;
+    public List<NNode> children;
 
-    public Node() {}
+    public NNode() {}
 
-    public Node(int _val) {
+    public NNode(int _val) {
         val = _val;
     }
 
-    public Node(int _val, List<Node> _children) {
+    public NNode(int _val, List<NNode> _children) {
         val = _val;
         children = _children;
     }
@@ -30,15 +30,15 @@ public class LevelOrderN_429 {
      * @param root
      * @return
      */
-    public List<List<Integer>> levelOrder(Node root) {
+    public List<List<Integer>> levelOrder(NNode root) {
         level(root);
         return result;
     }
 
-    public void level(Node root){
+    public void level(NNode root){
         if(root == null)
             return;
-        Queue<Node> queue = new LinkedList<>();
+        Queue<NNode> queue = new LinkedList<>();
         queue.offer(root);
 
         while(!queue.isEmpty()){
@@ -46,10 +46,10 @@ public class LevelOrderN_429 {
             int len = queue.size();
 
             while(len > 0){
-                Node node = queue.poll();
+                NNode node = queue.poll();
                 temp.add(node.val);
-                List<Node> children = node.children;
-                for(Node child : children){
+                List<NNode> children = node.children;
+                for(NNode child : children){
                     if(child != null){
                         queue.offer(child);
                     }
