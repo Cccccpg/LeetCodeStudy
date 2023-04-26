@@ -2,6 +2,7 @@ package Greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class FindMinArrowShots_452 {
 
