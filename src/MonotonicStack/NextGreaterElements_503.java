@@ -2,7 +2,6 @@ package MonotonicStack;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class NextGreaterElements_503 {
     public static void main(String[] args) {
