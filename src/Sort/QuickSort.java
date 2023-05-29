@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class QuickSort {
     public static void main(String[] args) {
-        int[] nums = {1, 8, 6, 7, 9, 2};
+        int[] nums = {3,2,1,5,6,4};
         quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
@@ -35,22 +35,21 @@ public class QuickSort {
         int index = low;
         for (int i = low; i < high; i++) {
             if (nums[i] <= pivot){
-                swap(nums[i], nums[index]);
+                swap(nums, i, index);
                 index++;
             }
         }
-        swap(nums[index], nums[high]);
+        swap(nums, index, high);
         return index;
     }
 
     /**
      * 交换
-     * @param num1
-     * @param num2
+     *
      */
-    public static void swap(int num1, int num2){
-        int temp = num1;
-        num1 = num2;
-        num2 = temp;
+    public static void swap(int[] num, int i, int j){
+        int temp = num[i];
+        num[i] = num[j];
+        num[j] = temp;
     }
 }
