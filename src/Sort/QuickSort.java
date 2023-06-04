@@ -1,12 +1,16 @@
 package Sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class QuickSort {
     public static void main(String[] args) {
         int[] nums = {3,2,1,5,6,4};
+        long start = System.nanoTime();
         quickSort(nums, 0, nums.length - 1);
-        System.out.println(Arrays.toString(nums));
+        long end = System.nanoTime();
+        System.out.println(end - start);
+        System.out.println(nums[nums.length - 2]);
     }
 
     /**
