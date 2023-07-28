@@ -1,5 +1,7 @@
 package DP;
 
+import sun.awt.image.GifImageDecoder;
+
 import java.util.Scanner;
 
 public class LongestCommonSubsequence_1143 {
@@ -8,7 +10,7 @@ public class LongestCommonSubsequence_1143 {
         Scanner scanner = new Scanner(System.in);
         String text1 = scanner.nextLine();
         String text2 = scanner.nextLine();
-        System.out.println(longestCommonSubsequence(text1, text2));
+        System.out.println(printLongestCommonSubsequence(text1, text2));
     }
 
     /**
@@ -40,5 +42,35 @@ public class LongestCommonSubsequence_1143 {
             }
         }
         return dp[text1.length()][text2.length()];
+    }
+
+    /**
+     * 如果这一题改一下，要求输出最长公共子序列是啥
+     */
+    public static String printLongestCommonSubsequence(String text1, String text2){
+        int m = text1.length(), n = text2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++){
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)){
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                }else{
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        int count = dp[m][n];
+        for (int i = m; i > 0; i--) {
+            for (int j = n; j > 0; j--) {
+                if (dp[i][j] > dp[i - 1][j] && dp[i][j] > dp[i][j - 1]){
+                    if (count == dp[i][j]){
+                        sb.append(text1.charAt(i - 1));
+                        count--;
+                    }
+                }
+            }
+        }
+        return sb.reverse().toString();
     }
 }

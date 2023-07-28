@@ -9,33 +9,19 @@ public class LengthOfLongestSubstring_3 {
     }
 
     public static int lengthOfLongestSubstring(String s) {
-        if(s.length() == 0 || s.length() == 1){
-            return s.length();
-        }
-        int[] dict = new int[96];
-        int ans = 0, index = 0;
-        for(int i = 0; i < s.length(); i++){
-            if (dict[s.charAt(i) - ' '] != 0){
-                ans = Math.max(dictLen(dict), ans);
-                while (s.charAt(index) != s.charAt(i)){
-                    dict[s.charAt(index) - ' ']--;
-                    index++;
-                }
-                dict[s.charAt(index) - ' ']--;
-                index++;
-            }
-            dict[s.charAt(i) - ' ']++;
-        }
-        return Math.max(ans, dictLen(dict));
-    }
+        // 记录字符上一次出现的位置
+        int[] last = new int[128];
+        int n = s.length();
 
-    public static int dictLen(int[] nums){
-        int count = 0;
-        for(int num : nums){
-            if (num == 1){
-                count++;
-            }
+        int res = 0;
+        int start = 0; // 窗口开始位置
+        for(int i = 0; i < n; i++) {
+            int index = s.charAt(i);
+            start = Math.max(start, last[index] + 1);
+            res   = Math.max(res, i - start + 1);
+            last[index] = i;
         }
-        return count;
+
+        return res;
     }
 }
