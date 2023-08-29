@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 public class DeWu_2023_2 {
     /**
-     * 导演在组织进行大运会开幕式的排练，其中一个环节是需要参演人员围成一个环形。
-     * 演出人员站成了一圈，出于美观度的考虑，导演不希望某一个演员身边的其他人比他低太多或者高太多。
-     * 现在给出n个参演人员的身高，
-     * 问在他们站成一圈时，相邻演员的身高差的最大值至少是多少?
+     * 市容市貌建设是一个很重要的课题，在某市的规划中有这样一条要求，
+     * 位于一条街道上的相邻位置的楼的高度差不能超过1m。每栋楼的高度都是整数。
+     * 某同学第一次来到这个城市，他听人提起在一条街上，有n栋连续的建筑，这些建筑的总高度是m米，
+     * 他想知道在这条街道上，第x栋建筑可能的最高高度是多少，不存在高度为0的建筑，也就是说这n栋建筑至少高1m
+     * 1m.
      *
      * 输入：
-     * 5
-     * 2 1 1 3 2
+     * 5 6 1
      * 输出：
-     * 1
+     * 2
      *
      *
      * @param args
@@ -23,30 +23,32 @@ public class DeWu_2023_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
-        }
-        System.out.println(solution(nums));
-    }
+        int m = sc.nextInt();
+        int x = sc.nextInt();
 
-    public static int solution(int[] nums) {
-        int ans = 0;
-        int n = nums.length;
-        if (n == 2){
-            return nums[1] - nums[0];
+        int count = 0;
+        int ans = 1;
+        m = m - n;
+        while (m > 0) {
+            int leftIndex = 0;
+            if (x - count < 1){
+                leftIndex = x - 1;
+            }else{
+                leftIndex = count;
+            }
+            int rightIndex = 0;
+            if (x + count <= n){
+                rightIndex = count;
+            }else{
+                rightIndex = n - x;
+            }
+            if (leftIndex + rightIndex + 1 <= m){
+                ans++;
+                m -= leftIndex + rightIndex + 1;
+                count++;
+            } else break;
         }
-        int[] arr = new int[n];
-        Arrays.sort(nums);
-        int oddAns = Integer.MIN_VALUE;
-        for (int i = 2; i < n; i += 2){
-            oddAns = Math.max(nums[i] - nums[i - 2], oddAns);
-        }
-        int evenAns = Integer.MIN_VALUE;
-        for (int i = 3; i < n; i += 2){
-            evenAns = Math.max(nums[i] - nums[i - 2], evenAns);
-        }
-        ans = Math.max(nums[1] - nums[0], Math.max(oddAns, evenAns));
-        return ans;
+        System.out.println(ans);
+
     }
 }
